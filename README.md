@@ -13,7 +13,7 @@ await pdf.SaveAsync("hello.pdf");
 
 ## Contents
 
-- [Install](#install) · [Quick Start](#quick-start) · [Options](#options)
+- [Install](#install) · [Why Flavor?](#why-flavor) · [Quick Start](#quick-start) · [Options](#options)
 - [ASP.NET Core](#aspnet-core) · [PDF Operations](#pdf-operations) · [Security](#security)
 - [Playwright](#playwright) · [Performance](#performance) · [Deployment](#deployment)
 
@@ -30,6 +30,38 @@ dotnet add package Flavor.Playwright    # optional
 ```
 
 First run downloads Chromium (~150MB). Use `BrowserExecutablePath` to skip.
+
+---
+
+## Why Flavor?
+
+You can use PuppeteerSharp and PdfSharpCore directly. Flavor adds:
+
+**Without Flavor:**
+```csharp
+await new BrowserFetcher().DownloadAsync();
+var browser = await Puppeteer.LaunchAsync(new LaunchOptions { Headless = true });
+var page = await browser.NewPageAsync();
+await page.SetContentAsync(html);
+await page.PdfAsync("output.pdf", new PdfOptions { Format = PaperFormat.A4 });
+await browser.CloseAsync();
+// + separate code for merge, watermarks, encryption...
+```
+
+**With Flavor:**
+```csharp
+var pdf = await new FlavorConverter().ConvertHtmlAsync("<h1>Hello</h1>");
+```
+
+| | Direct libs | Flavor |
+|-|-------------|--------|
+| Browser lifecycle | Manual | Managed |
+| Browser reuse | DIY | Built-in pool |
+| ASP.NET Core | Boilerplate | `this.Pdf()` |
+| Merge/Split/Watermark | Different APIs | Unified |
+| Resource cleanup | Easy to leak | Automatic |
+
+**When to skip Flavor:** single simple use-case, need full browser control, already have your own wrapper.
 
 ---
 
@@ -182,8 +214,6 @@ Uses real browser engine = heavy dependencies.
 | Browser | ~150MB, auto-downloaded |
 | Memory | ~150MB per instance |
 | Linux | Needs system libs (see Docker) |
-
-**Too heavy?** Try [QuestPDF](https://www.questpdf.com/) — no browser, fluent C# API.
 
 ---
 
