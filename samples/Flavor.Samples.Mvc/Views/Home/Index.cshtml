@@ -1,0 +1,45 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<h1>Flavor MVC Sample</h1>
+<p>This sample demonstrates using Flavor with ASP.NET Core MVC.</p>
+
+<div class="card">
+    <h2>PDF Generation Examples</h2>
+    <p>Click any button below to generate a PDF:</p>
+
+    <a class="btn" asp-controller="Pdf" asp-action="Simple">Simple PDF</a>
+    <a class="btn" asp-controller="Pdf" asp-action="CustomOptions">Custom Options</a>
+    <a class="btn" asp-controller="Pdf" asp-action="Preview">Inline Preview</a>
+    <a class="btn" asp-controller="Pdf" asp-action="Report">Report PDF</a>
+    <a class="btn" asp-controller="Pdf" asp-action="Advanced">Advanced</a>
+    <a class="btn" asp-controller="Pdf" asp-action="Invoice" asp-route-id="INV-2024-001">Invoice</a>
+</div>
+
+<div class="card">
+    <h2>URL Capture</h2>
+    <p>Capture any webpage as PDF:</p>
+    <a class="btn" asp-controller="Pdf" asp-action="FromUrl" asp-route-url="https://example.com">Capture example.com</a>
+</div>
+
+<div class="card">
+    <h2>Code Examples</h2>
+
+    <h3>Simple PDF</h3>
+    <pre><code>public IActionResult Simple()
+{
+    var html = "&lt;h1&gt;Hello!&lt;/h1&gt;";
+    return this.Pdf(html, "simple.pdf");
+}</code></pre>
+
+    <h3>With Options</h3>
+    <pre><code>return this.Pdf(html, "report.pdf", options => options
+    .WithPageSize(PageSize.A4)
+    .WithLandscape()
+    .WithBackground()
+    .WithPageNumbers());</code></pre>
+
+    <h3>URL to PDF</h3>
+    <pre><code>return this.PdfFromUrl("https://example.com", "page.pdf");</code></pre>
+</div>

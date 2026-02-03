@@ -9,7 +9,7 @@
         <LangVersion>12.0</LangVersion>
 
         <PackageId>Flavor.AspNetCore</PackageId>
-        <Version>1.0.2</Version>
+        <Version>1.0.3</Version>
         <Authors>German Podlessky and Contributors</Authors>
         <Description>ASP.NET Core integration for Flavor HTML to PDF converter. Includes PdfResult, Razor view rendering, and DI extensions.</Description>
         <PackageTags>pdf;html;converter;html-to-pdf;aspnetcore;razor;mvc</PackageTags>

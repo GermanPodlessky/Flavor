@@ -9,7 +9,7 @@
         <LangVersion>12.0</LangVersion>
 
         <PackageId>Flavor.Playwright</PackageId>
-        <Version>1.0.2</Version>
+        <Version>1.0.3</Version>
         <Authors>German Podlessky and Contributors</Authors>
         <Description>Playwright-based rendering engine for Flavor HTML to PDF converter. Alternative to the default Chromium engine.</Description>
         <PackageTags>pdf;html;converter;html-to-pdf;playwright</PackageTags>
